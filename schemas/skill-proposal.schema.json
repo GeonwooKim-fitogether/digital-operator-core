@@ -1,0 +1,53 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://digital-operator-core/schemas/skill-proposal",
+  "title": "SkillProposal",
+  "description": "Skill 개선안 — 제안만 하며 직접 적용하지 않는다",
+  "type": "object",
+  "required": [
+    "id", "targetSkillId", "scope", "currentProblem", "proposedChange",
+    "rationale", "relatedEpisodeIds", "regressionPlan", "requiresApproval", "createdAt"
+  ],
+  "properties": {
+    "id": { "type": "string" },
+    "targetSkillId": { "type": "string" },
+    "scope": {
+      "type": "string",
+      "enum": ["company", "core"],
+      "description": "company = 회사 전용, core = 공통 Core 승격 필요"
+    },
+    "currentProblem": { "type": "string" },
+    "proposedChange": { "type": "string" },
+    "diff": {
+      "type": "string",
+      "description": "현재 Skill 대비 변경 내용 (텍스트 Diff)"
+    },
+    "rationale": { "type": "string" },
+    "relatedEpisodeIds": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1
+    },
+    "expectedBenefits": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "expectedSideEffects": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "regressionPlan": { "type": "string" },
+    "requiresApproval": {
+      "type": "boolean",
+      "const": true,
+      "description": "항상 true — Skill 변경은 사람 승인 없이 적용하지 않는다"
+    },
+    "approvalStatus": {
+      "type": "string",
+      "enum": ["pending", "approved", "rejected"],
+      "default": "pending"
+    },
+    "createdAt": { "type": "string", "format": "date-time" }
+  },
+  "additionalProperties": false
+}

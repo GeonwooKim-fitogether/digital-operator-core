@@ -1,0 +1,57 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://digital-operator-core/schemas/evaluation",
+  "title": "Evaluation",
+  "description": "Evaluator Agent가 생성하는 독립 평가 보고서",
+  "type": "object",
+  "required": ["id", "projectId", "verdict", "overallScore", "scores", "findings", "rubricId", "evaluatedAt"],
+  "properties": {
+    "id": { "type": "string" },
+    "projectId": { "type": "string" },
+    "verdict": {
+      "type": "string",
+      "enum": ["pass", "revise", "fail"]
+    },
+    "overallScore": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "scores": {
+      "type": "object",
+      "description": "Rubric 차원별 점수 (1-5)",
+      "additionalProperties": {
+        "type": "number",
+        "minimum": 1,
+        "maximum": 5
+      }
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["dimension", "observation", "severity"],
+        "properties": {
+          "dimension": { "type": "string" },
+          "observation": { "type": "string" },
+          "severity": {
+            "type": "string",
+            "enum": ["info", "warning", "critical"]
+          },
+          "revisionsRequired": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "uncertainties": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "rubricId": { "type": "string" },
+    "evaluatedAt": { "type": "string", "format": "date-time" }
+  },
+  "additionalProperties": false
+}

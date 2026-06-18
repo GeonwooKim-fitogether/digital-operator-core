@@ -1,0 +1,13 @@
+{
+  "projectBrief": {
+    "id": "FIXTURE-PROJ-001",
+    "companyId": "fixture-co",
+    "title": "테스트 프로젝트",
+    "objective": "Fixture 검증용 최소 프로젝트",
+    "completionCriteria": ["요약 문서 1개 작성"],
+    "constraints": ["합성 데이터만 사용"],
+    "requestedAt": "2026-01-01T00:00:00Z"
+  },
+  "expectedVerdictOptions": ["pass", "revise", "fail"],
+  "note": "이 fixture는 Schema 구조 검증용 고정 입력이다."
+}

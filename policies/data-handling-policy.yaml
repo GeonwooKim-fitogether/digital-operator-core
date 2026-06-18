@@ -1,0 +1,70 @@
+# 데이터 처리 정책
+
+version: "1.0"
+effective_date: "2025-06"
+
+principles:
+  - id: source-required
+    rule: "출처 없는 사실은 조직 기억으로 승격하지 않는다."
+  - id: drive-readonly
+    rule: "MVP에서 Google Drive는 Read-only로만 사용한다."
+  - id: no-full-drive-copy
+    rule: "Google Drive 전체를 GitHub나 Supabase에 복제하지 않는다."
+  - id: no-company-secret-in-core
+    rule: "회사 A의 기밀을 Core 저장소나 다른 회사 인스턴스로 이동하지 않는다."
+  - id: secrets-via-env
+    rule: "인증정보는 환경변수로 주입한다. 코드나 Git에 포함하지 않는다."
+  - id: external-api-approval
+    rule: "고객·회사 기밀을 외부 API로 전송하기 전에 반드시 사람 승인을 받는다."
+  - id: cost-documentation
+    rule: "외부 임베딩 API나 추가 모델 비용이 발생하는 기능은 구현 전 비용과 데이터 전송 경로를 문서화한다."
+
+google_drive:
+  access: read-only
+  scope: approved-folders-only
+  preserve:
+    - drive_file_id
+    - drive_url
+    - modified_at
+    - author_or_permissions
+  do_not_copy_to:
+    - github
+    - supabase
+
+gbrain_supabase:
+  stores:
+    - project_objectives_and_results
+    - key_decisions_and_rationale
+    - success_and_failure_cases
+    - reusable_solutions
+    - project_relationships
+    - known_facts_and_uncertainties
+    - information_conflicts
+    - knowledge_gaps
+    - drive_document_references
+    - lessons_for_next_projects
+  does_not_store:
+    - google_drive_full_content
+    - company_secrets_raw
+
+github:
+  stores:
+    - agents
+    - skills
+    - execution_loops
+    - evaluation_criteria
+    - json_schemas
+    - approval_policies
+    - data_access_policies
+    - tests_and_regression_cases
+    - architecture_and_design_docs
+    - change_history
+  does_not_store:
+    - supabase_secrets
+    - google_oauth_credentials
+    - personal_tokens
+    - live_databases
+    - google_drive_originals
+    - sensitive_runtime_results
+    - user_local_settings
+    - temporary_work_files
