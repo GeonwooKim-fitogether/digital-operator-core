@@ -1,0 +1,61 @@
+# 승인 정책
+# 이 정책은 어떤 작업이 사람 승인 없이 실행될 수 없는지 정의한다.
+
+version: "1.0"
+effective_date: "2025-06"
+
+automatable:
+  description: "자동화 허용 — 사람 승인 없이 실행 가능"
+  actions:
+    - id: read-documents
+      description: "Google Drive 문서 읽기"
+    - id: query-memory
+      description: "GBrain Episode 조회"
+    - id: draft-internal
+      description: "내부 초안 작성"
+    - id: create-plan
+      description: "실행계획 수립"
+    - id: evaluate-result
+      description: "결과 평가 (내부)"
+    - id: extract-episode
+      description: "Project Episode 생성"
+    - id: propose-skill
+      description: "Skill 개선안 작성 (제안만)"
+    - id: run-tests
+      description: "테스트 및 회귀평가 실행"
+    - id: draft-report
+      description: "내부 보고서 초안 생성"
+
+requires_approval:
+  description: "사람 승인 필수 — 승인 없이 실행 불가"
+  actions:
+    - id: send-external-email
+      description: "외부 이메일 발송"
+      risk: high
+    - id: external-share
+      description: "외부 공유"
+      risk: high
+    - id: finalize-contract
+      description: "계약 또는 법률 문서 확정"
+      risk: critical
+    - id: execute-budget
+      description: "비용 집행"
+      risk: critical
+    - id: hr-decision
+      description: "인사 관련 결정"
+      risk: critical
+    - id: delete-data
+      description: "데이터 삭제"
+      risk: high
+    - id: modify-operational-skill
+      description: "운영 Skill 변경 (skills/ 수정)"
+      risk: high
+    - id: modify-core-skill
+      description: "Core Skill 변경 (digital-operator-core skills/ 수정)"
+      risk: high
+    - id: modify-drive-original
+      description: "Google Drive 원본 수정"
+      risk: high
+    - id: send-confidential-to-external-api
+      description: "고객 또는 회사 기밀의 외부 API 전송"
+      risk: critical

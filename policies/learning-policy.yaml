@@ -1,0 +1,64 @@
+# 학습 정책
+# Skill 진화와 기억 승격에 관한 규칙
+
+version: "1.0"
+effective_date: "2025-06"
+
+skill_evolution:
+  automated_steps:
+    - extract_episode_from_project
+    - identify_reusable_patterns
+    - generate_skill_proposal
+    - run_regression_tests
+
+  requires_human_review:
+    - compare_with_existing_skill
+    - evaluate_regression_results
+    - approve_or_reject_proposal
+    - apply_approved_change_to_skill_file
+
+  prohibited:
+    - agent_directly_overwrites_skill_file
+    - auto_merge_without_review
+    - applying_proposal_without_approval_record
+
+  proposal_requirements:
+    - target_skill_id
+    - current_problem
+    - proposed_change
+    - diff_from_current
+    - rationale
+    - related_episode_ids
+    - expected_benefits
+    - expected_side_effects
+    - regression_plan
+    - scope: [company, core]
+    - requires_approval: true
+
+core_promotion:
+  description: "회사 전용 학습을 Core 공통 능력으로 승격하는 절차"
+  steps:
+    - extract_generalizable_pattern_from_episode
+    - remove_company_specific_info
+    - create_core_skill_proposal
+    - run_core_regression_evaluation
+    - human_approval
+    - merge_to_digital_operator_core
+    - optional_per_company_update
+
+  prohibited:
+    - copying_company_secrets_to_core
+    - copying_confidential_client_info_to_core
+    - automatic_core_update_without_approval
+
+episode_storage:
+  minimum_fields:
+    - project_id
+    - company_id
+    - outcome
+    - key_learnings
+    - source_reference_ids
+  quality_gate:
+    - must_have_at_least_one_source_reference
+    - evaluator_must_be_independent_from_executor
+    - verdict_must_not_be_only_positive_if_issues_exist
