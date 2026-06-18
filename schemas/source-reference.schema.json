@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://digital-operator-core/schemas/source-reference",
+  "title": "SourceReference",
+  "description": "결과물에서 사용한 원본 자료 참조",
+  "type": "object",
+  "required": ["id", "type", "title", "retrievedAt"],
+  "properties": {
+    "id": { "type": "string" },
+    "type": {
+      "type": "string",
+      "enum": ["google-drive", "gbrain-episode", "manual", "external-url"]
+    },
+    "title": { "type": "string" },
+    "driveFileId": { "type": "string" },
+    "driveUrl": { "type": "string", "format": "uri" },
+    "mimeType": { "type": "string" },
+    "modifiedAt": { "type": "string", "format": "date-time" },
+    "author": { "type": "string" },
+    "retrievedAt": { "type": "string", "format": "date-time" },
+    "relevanceSummary": { "type": "string" },
+    "pageRange": { "type": "string" },
+    "excerpt": { "type": "string" }
+  },
+  "additionalProperties": false
+}

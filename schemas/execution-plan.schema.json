@@ -1,0 +1,54 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://digital-operator-core/schemas/execution-plan",
+  "title": "ExecutionPlan",
+  "description": "Executor가 생성하는 실행계획",
+  "type": "object",
+  "required": ["id", "projectId", "tasks", "riskFlags", "pendingDecisions", "createdAt"],
+  "properties": {
+    "id": { "type": "string" },
+    "projectId": { "type": "string" },
+    "tasks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "description", "status"],
+        "properties": {
+          "id": { "type": "string" },
+          "title": { "type": "string" },
+          "description": { "type": "string" },
+          "dependencies": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "status": {
+            "type": "string",
+            "enum": ["pending", "in-progress", "done", "skipped"]
+          },
+          "sourceIds": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "riskFlags": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "pendingDecisions": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "relatedEpisodeIds": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "additionalProperties": false
+}
