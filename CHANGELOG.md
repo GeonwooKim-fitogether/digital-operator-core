@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [0.2.0] — Phase 2 준비: GBrain HTTP MCP 연결 설계
+
+### Added
+- `docs/adr/ADR-002-gbrain-integration.md`: GBrain HTTP MCP 직접 연결 결정 기록
+- `docs/phase2-roadmap.md`: Phase 2 단계별 체크리스트 (Ollama → GBrain → Supabase)
+
 ## [0.1.0] — Phase 1: Architecture + Skeleton + Mock Vertical Slice
 
 ### Added
